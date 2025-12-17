@@ -9,12 +9,12 @@
 namespace Engine {
 
 /**
- * Asenkron input yönetimi için sınıf
- * Klavye girişlerini ayrı thread'de dinler
+ * Class for asynchronous input management
+ * Listens to keyboard input in a separate thread
  */
 class Input {
 public:
-    // Input tuşları
+    // Input keys
     enum class Key {
         NONE = 0,
         UP = 'w',
@@ -33,11 +33,11 @@ public:
     Input();
     ~Input();
 
-    // Input sistemi başlat/durdur
+    // Start/stop input system
     void start();
     void stop();
 
-    // Input kontrolü
+    // Input control
     bool hasInput() const;
     Key getKey();
     bool isKeyPressed(Key key) const;

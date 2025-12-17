@@ -7,13 +7,13 @@ namespace Engine {
 namespace Cursor {
 
 /**
- * Terminal cursor kontrolü ve renklendirme için namespace
- * ANSI renk kodları ve cursor pozisyon kontrolü
+ * Namespace for terminal cursor control and coloring
+ * ANSI color codes and cursor position control
  */
 
-// Renk tanımlamaları
+// Color definitions
 namespace Color {
-    // Ön plan renkleri
+    // Foreground colors
     extern const char* BLACK;
     extern const char* RED;
     extern const char* GREEN;
@@ -23,7 +23,7 @@ namespace Color {
     extern const char* CYAN;
     extern const char* WHITE;
     
-    // Parlak renkler
+    // Bright colors
     extern const char* BRIGHT_BLACK;
     extern const char* BRIGHT_RED;
     extern const char* BRIGHT_GREEN;
@@ -33,7 +33,7 @@ namespace Color {
     extern const char* BRIGHT_CYAN;
     extern const char* BRIGHT_WHITE;
     
-    // Arka plan renkleri
+    // Background colors
     extern const char* BG_BLACK;
     extern const char* BG_RED;
     extern const char* BG_GREEN;
@@ -46,17 +46,17 @@ namespace Color {
     extern const char* RESET;
 }
 
-// Cursor hareket fonksiyonları
-void moveTo(int x, int y);      // Cursor'u (x,y) konumuna taşı
-void moveUp(int n);             // n satır yukarı
-void moveDown(int n);           // n satır aşağı
-void moveRight(int n);          // n sütun sağa
-void moveLeft(int n);           // n sütun sola
+// Cursor movement functions
+void moveTo(int x, int y);      // Move cursor to (x,y) position
+void moveUp(int n);             // Move n lines up
+void moveDown(int n);           // Move n lines down
+void moveRight(int n);          // Move n columns right
+void moveLeft(int n);           // Move n columns left
 
-// Renk fonksiyonları
-void setColor(const char* color);           // Ön plan rengini ayarla
-void setBackgroundColor(const char* color); // Arka plan rengini ayarla
-void resetColor();                          // Renkleri sıfırla
+// Color functions
+void setColor(const char* color);           // Set foreground color
+void setBackgroundColor(const char* color); // Set background color
+void resetColor();                          // Reset colors
 
 } // namespace Cursor
 } // namespace Engine

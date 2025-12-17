@@ -7,24 +7,24 @@ namespace Engine {
 namespace Console {
 
 /**
- * Terminal konsol işlemleri için namespace
- * ANSI escape kodları kullanarak terminal kontrolü sağlar
+ * Namespace for terminal console operations
+ * Provides terminal control using ANSI escape codes
  */
 
-// Terminal başlatma ve temizleme
-void init();        // Terminal'i başlat, cursor'u gizle
-void clear();       // Terminal'i temizle
-void reset();       // Terminal'i varsayılan ayarlara döndür
+// Terminal initialization and cleanup
+void init();        // Initialize terminal, hide cursor
+void clear();       // Clear terminal
+void reset();       // Reset terminal to default settings
 
-// Cursor kontrolü
-void hideCursor();  // Cursor'u gizle
-void showCursor();  // Cursor'u göster
+// Cursor control
+void hideCursor();  // Hide cursor
+void showCursor();  // Show cursor
 
-// Çizim fonksiyonları
-void drawPoint(int x, int y, char c);  // (x,y) konumuna karakter çiz
-void drawLine(int x1, int y1, int x2, int y2, char c);  // İki nokta arası çizgi
-void drawRect(int x, int y, int width, int height, char c);  // Dikdörtgen çiz
-void drawText(int x, int y, const std::string& text);  // Metin yaz
+// Drawing functions
+void drawPoint(int x, int y, char c);  // Draw character at (x,y)
+void drawLine(int x1, int y1, int x2, int y2, char c);  // Draw line between two points
+void drawRect(int x, int y, int width, int height, char c);  // Draw rectangle
+void drawText(int x, int y, const std::string& text);  // Draw text
 
 } // namespace Console
 } // namespace Engine

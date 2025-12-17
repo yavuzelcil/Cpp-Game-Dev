@@ -11,24 +11,24 @@
 namespace Engine {
 
 /**
- * Ana oyun döngüsünü yöneten sınıf
- * Update ve render thread'lerini yönetir
+ * Class that manages the main game loop
+ * Manages update and render threads
  */
 class GameEngine {
 public:
     GameEngine();
     virtual ~GameEngine();
 
-    // Oyun döngüsü
+    // Game loop
     void run();
     void stop();
 
-    // FPS kontrolü
+    // FPS control
     void setTargetFPS(int fps);
     int getCurrentFPS() const;
 
 protected:
-    // Alt sınıflarda override edilecek fonksiyonlar
+    // Functions to be overridden in derived classes
     virtual void onInit() = 0;
     virtual void onUpdate(float deltaTime) = 0;
     virtual void onRender() = 0;
