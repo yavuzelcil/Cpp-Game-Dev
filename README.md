@@ -1,72 +1,72 @@
 # C++ Terminal Game Engine 🎮
 
-Modern C++ ile geliştirilmiş, terminal tabanlı oyunlar için oyun motoru. Concurrency, multithreading ve temiz C++ pratiklerini öğrenmek için ideal bir proje.
+A modern C++ game engine for terminal-based games. Perfect for learning C++, concurrency, multithreading, and clean coding practices.
 
-## 📋 Özellikler
+## 📋 Features
 
-- **Multithreading**: Ayrı update ve render thread'leri
-- **Asenkron Input**: Klavye girişlerini ayrı thread'de dinleme
-- **ANSI Terminal Kontrolü**: Renk ve cursor kontrolü
-- **FPS Yönetimi**: Hedef FPS ayarlama ve gerçek zamanlı FPS gösterimi
-- **Modüler Yapı**: Her oyun için tekrar kullanılabilir engine
+- **Multithreading**: Separate update and render threads
+- **Asynchronous Input**: Keyboard input handling in separate thread
+- **ANSI Terminal Control**: Color and cursor management
+- **FPS Management**: Target FPS setting and real-time FPS display
+- **Modular Architecture**: Reusable engine for every game
 
-## 🏗️ Proje Yapısı
+## 🏗️ Project Structure
 
 ```
 Cpp-Game-Dev/
-├── engine/                  # Game engine kütüphanesi
-│   ├── include/            # Header dosyaları
-│   │   ├── GameEngine.h    # Ana oyun döngüsü
-│   │   ├── Console.h       # Terminal çizim fonksiyonları
-│   │   ├── Cursor.h        # Cursor ve renk kontrolü
-│   │   └── Input.h         # Asenkron input yönetimi
-│   └── src/                # Implementation dosyaları
+├── engine/                  # Game engine library
+│   ├── include/            # Header files
+│   │   ├── GameEngine.h    # Main game loop
+│   │   ├── Console.h       # Terminal drawing functions
+│   │   ├── Cursor.h        # Cursor and color control
+│   │   └── Input.h         # Asynchronous input management
+│   └── src/                # Implementation files
 │       ├── GameEngine.cpp
 │       ├── Console.cpp
 │       ├── Cursor.cpp
 │       └── Input.cpp
-├── examples/               # Örnek oyunlar
-│   └── snake_game.cpp     # Snake oyunu örneği
-├── games/                  # Geliştirilen oyunlar
-└── CMakeLists.txt         # Build yapılandırması
+├── examples/               # Example games
+│   └── snake_game.cpp     # Snake game example
+├── games/                  # Developed games
+└── CMakeLists.txt         # Build configuration
 ```
 
-## 🚀 Başlangıç
+## 🚀 Getting Started
 
-### Gereksinimler
+### Requirements
 
-- C++17 uyumlu compiler (GCC 7+, Clang 5+, MSVC 2017+)
-- CMake 3.15 veya üzeri
-- Unix-like sistem (macOS, Linux) - ANSI terminal desteği için
+- C++17 compatible compiler (GCC 7+, Clang 5+, MSVC 2017+)
+- CMake 3.15 or higher
+- Unix-like system (macOS, Linux) - for ANSI terminal support
 
-### Derleme
+### Building
 
 ```bash
-# Proje dizinine git
+# Navigate to project directory
 cd Cpp-Game-Dev
 
-# Build klasörü oluştur
+# Create build directory
 mkdir build && cd build
 
-# CMake ile configure et
+# Configure with CMake
 cmake ..
 
-# Derle
+# Build
 make
 
-# Snake oyununu çalıştır
+# Run snake game
 ./examples/snake_game
 ```
 
-### Hızlı Build (tek satır)
+### Quick Build (one-liner)
 
 ```bash
 mkdir -p build && cd build && cmake .. && make && cd ..
 ```
 
-## 🎮 Örnek Kullanım
+## 🎮 Example Usage
 
-### Basit Bir Oyun Oluşturma
+### Creating a Simple Game
 
 ```cpp
 #include "GameEngine.h"
@@ -74,25 +74,25 @@ mkdir -p build && cd build && cmake .. && make && cd ..
 class MyGame : public Engine::GameEngine {
 protected:
     void onInit() override {
-        // Oyun başlatma kodu
+        // Game initialization code
     }
     
     void onUpdate(float deltaTime) override {
-        // Oyun mantığı (input, fizik, vb.)
+        // Game logic (input, physics, etc.)
         if (input.hasInput()) {
             auto key = input.getKey();
-            // Input işleme
+            // Handle input
         }
     }
     
     void onRender() override {
-        // Çizim kodları
+        // Drawing code
         Engine::Console::clear();
         Engine::Console::drawText(10, 10, "Hello Game!");
     }
     
     void onShutdown() override {
-        // Temizlik işlemleri
+        // Cleanup
     }
 };
 
@@ -109,17 +109,17 @@ int main() {
 ### Console Namespace
 
 ```cpp
-// Terminal başlatma
+// Terminal initialization
 Engine::Console::init();
 Engine::Console::clear();
 
-// Çizim fonksiyonları
+// Drawing functions
 Engine::Console::drawPoint(x, y, 'X');
 Engine::Console::drawLine(x1, y1, x2, y2, '#');
 Engine::Console::drawRect(x, y, width, height, '#');
 Engine::Console::drawText(x, y, "Text");
 
-// Cursor kontrolü
+// Cursor control
 Engine::Console::hideCursor();
 Engine::Console::showCursor();
 ```
@@ -127,117 +127,117 @@ Engine::Console::showCursor();
 ### Cursor Namespace
 
 ```cpp
-// Renk ayarlama
+// Color setting
 Engine::Cursor::setColor(Engine::Cursor::Color::BRIGHT_GREEN);
 Engine::Cursor::setBackgroundColor(Engine::Cursor::Color::BG_BLACK);
 Engine::Cursor::resetColor();
 
-// Cursor hareketi
+// Cursor movement
 Engine::Cursor::moveTo(x, y);
 Engine::Cursor::moveUp(n);
 Engine::Cursor::moveDown(n);
 ```
 
-### Input Sınıfı
+### Input Class
 
 ```cpp
-// Input kontrolü (GameEngine içinde hazır)
+// Input handling (available in GameEngine)
 if (input.hasInput()) {
     auto key = input.getKey();
     
     switch (key) {
         case Engine::Input::Key::UP:
         case Engine::Input::Key::ARROW_UP:
-            // Yukarı hareket
+            // Move up
             break;
         case Engine::Input::Key::SPACE:
-            // Space işleme
+            // Handle space
             break;
         case Engine::Input::Key::ESC:
-            // Çıkış (otomatik olarak handle ediliyor)
+            // Exit (handled automatically)
             break;
     }
 }
 ```
 
-## 🎓 Öğrenme Konuları
+## 🎓 Learning Topics
 
-Bu proje ile şu konuları öğrenebilirsiniz:
+This project covers the following topics:
 
-### C++ Temel Konular
-- ✅ Sınıflar ve inheritance
-- ✅ Virtual fonksiyonlar
+### C++ Fundamentals
+- ✅ Classes and inheritance
+- ✅ Virtual functions
 - ✅ Namespaces
-- ✅ Header/source dosya yapısı
-- ✅ Smart pointers (ileride)
+- ✅ Header/source file structure
+- ✅ Smart pointers (upcoming)
 - ✅ STL containers (vector, deque, queue)
 
 ### Concurrency
-- ✅ `std::thread` - Thread oluşturma
-- ✅ `std::atomic` - Thread-safe değişkenler
+- ✅ `std::thread` - Thread creation
+- ✅ `std::atomic` - Thread-safe variables
 - ✅ `std::mutex` - Mutual exclusion
-- ✅ `std::lock_guard` - RAII lock yönetimi
-- ✅ Thread'ler arası veri paylaşımı
-- ⏳ `std::condition_variable` (gelecek)
-- ⏳ `std::future` ve `std::promise` (gelecek)
+- ✅ `std::lock_guard` - RAII lock management
+- ✅ Inter-thread data sharing
+- ⏳ `std::condition_variable` (upcoming)
+- ⏳ `std::future` and `std::promise` (upcoming)
 
 ### Game Development
 - ✅ Game loop pattern
-- ✅ Delta time kullanımı
-- ✅ FPS yönetimi
+- ✅ Delta time usage
+- ✅ FPS management
 - ✅ Input handling
 - ✅ Rendering pipeline
-- ⏳ Collision detection (gelecek)
-- ⏳ Entity-Component System (gelecek)
+- ⏳ Collision detection (upcoming)
+- ⏳ Entity-Component System (upcoming)
 
 ## 📝 TODO
 
-- [ ] Windows desteği (Windows Console API)
-- [ ] Sound engine ekleme
-- [ ] Sprite/ASCII art desteği
-- [ ] Collision detection sistemi
-- [ ] Entity-Component-System (ECS) mimarisi
-- [ ] Save/Load sistemi
-- [ ] Daha fazla örnek oyun (Tetris, Pong, Maze Runner)
+- [ ] Windows support (Windows Console API)
+- [ ] Add sound engine
+- [ ] Sprite/ASCII art support
+- [ ] Collision detection system
+- [ ] Entity-Component-System (ECS) architecture
+- [ ] Save/Load system
+- [ ] More example games (Tetris, Pong, Maze Runner)
 
-## 🎮 Örnek Oyunlar
+## 🎮 Example Games
 
-### Snake Game (Tamamlandı)
-- WASD veya ok tuşları ile hareket
-- Yiyecek topla, büyü
-- Kendine veya duvara çarpma = game over
-- Gerçek zamanlı skor ve FPS gösterimi
+### Snake Game (Completed)
+- Move with WASD or arrow keys
+- Collect food to grow
+- Hit yourself or wall = game over
+- Real-time score and FPS display
 
-### Gelecek Oyunlar
+### Upcoming Games
 - Tetris
 - Pong
 - Space Invaders
 - Maze Runner
 - Tower Defense
 
-## 🤝 Katkıda Bulunma
+## 🤝 Contributing
 
-Bu bir öğrenme projesidir. Yeni oyunlar, özellikler veya iyileştirmeler eklemek için:
+This is a learning project. To add new games, features, or improvements:
 
-1. Yeni oyunlar için `games/` klasöründe yeni klasör oluşturun
-2. Engine iyileştirmeleri için `engine/` klasöründe değişiklik yapın
-3. `examples/` klasörüne yeni örnekler ekleyin
+1. Create a new folder in `games/` for new games
+2. Make changes in `engine/` for engine improvements
+3. Add new examples to `examples/`
 
-## 📚 Kaynaklar
+## 📚 Resources
 
 - [C++ Concurrency in Action](https://www.manning.com/books/c-plus-plus-concurrency-in-action-second-edition)
 - [Game Programming Patterns](https://gameprogrammingpatterns.com/)
 - [ANSI Escape Codes](https://en.wikipedia.org/wiki/ANSI_escape_code)
 
-## 📄 Lisans
+## 📄 License
 
-Bu proje eğitim amaçlıdır ve özgürce kullanılabilir.
+This project is for educational purposes and can be used freely.
 
-## 🎯 Amaç
+## 🎯 Goals
 
-Bu projenin amacı:
-- Modern C++ pratikleri öğrenmek
-- Concurrency ve multithreading konularında deneyim kazanmak
-- Oyun geliştirme temellerini anlamak
-- GitHub üzerinde portfolio oluşturmak
-- Temiz, okunabilir ve sürdürülebilir kod yazmayı öğrenmek
+The goals of this project:
+- Learn modern C++ practices
+- Gain experience with concurrency and multithreading
+- Understand game development fundamentals
+- Build a portfolio on GitHub
+- Learn to write clean, readable, and maintainable code

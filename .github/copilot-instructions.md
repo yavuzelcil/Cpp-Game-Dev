@@ -1,13 +1,13 @@
 # C++ Terminal Game Engine
 
-Modern C++ ile terminal tabanlı oyun geliştirme projesi.
+Modern C++ terminal-based game development project.
 
-## Amaç
-- C++ öğrenmek ve pekiştirmek
-- Concurrency ve multithreading uygulamak
-- Oyun geliştirme temellerini öğrenmek
+## Goals
+- Learn and master C++
+- Implement concurrency and multithreading
+- Learn game development fundamentals
 
-## Yapı
-- `engine/` - Oyun motoru
-- `games/` - Geliştirilen oyunlar
-- `examples/` - Örnek uygulamalar
+## Structure
+- `engine/` - Game engine core
+- `games/` - Developed games
+- `examples/` - Example applications

@@ -3,9 +3,9 @@
 #include <deque>
 
 /**
- * Basit Snake oyunu örneği
- * WASD veya ok tuşları ile hareket
- * ESC ile çıkış
+ * Simple Snake game example
+ * Move with WASD or arrow keys
+ * ESC to exit
  */
 
 struct Point {
@@ -21,18 +21,18 @@ public:
 
 protected:
     void onInit() override {
-        // Oyun alanı boyutları
+        // Game field dimensions
         width = 40;
         height = 20;
         
-        // Yılanı ortada başlat
+        // Start snake in center
         snake.clear();
         snake.push_back({width / 2, height / 2});
         
-        // İlk yiyeceği yerleştir
+        // Place first food
         spawnFood();
         
-        // Başlangıç yönü
+        // Initial direction
         direction = {1, 0};
         
         score = 0;
@@ -42,7 +42,7 @@ protected:
     void onUpdate(float deltaTime) override {
         if (gameOver) return;
         
-        // Input kontrolü
+        // Input handling
         if (input.hasInput()) {
             auto key = input.getKey();
             switch (key) {
@@ -67,7 +67,7 @@ protected:
             }
         }
         
-        // Yılanı hareket ettir (her 0.15 saniyede bir)
+        // Move snake (every 0.15 seconds)
         moveTimer += deltaTime;
         if (moveTimer >= 0.15f) {
             moveTimer = 0.0f;
@@ -78,25 +78,25 @@ protected:
     void onRender() override {
         Engine::Console::clear();
         
-        // Çerçeve çiz
+        // Draw frame
         Engine::Cursor::setColor(Engine::Cursor::Color::BRIGHT_WHITE);
         Engine::Console::drawRect(1, 1, width + 2, height + 2, '#');
         
-        // Yılanı çiz
+        // Draw snake
         Engine::Cursor::setColor(Engine::Cursor::Color::BRIGHT_GREEN);
         for (const auto& segment : snake) {
             Engine::Console::drawPoint(segment.x + 2, segment.y + 2, 'O');
         }
         
-        // Başı farklı çiz
+        // Draw head differently
         Engine::Cursor::setColor(Engine::Cursor::Color::BRIGHT_YELLOW);
         Engine::Console::drawPoint(snake.front().x + 2, snake.front().y + 2, '@');
         
-        // Yiyeceği çiz
+        // Draw food
         Engine::Cursor::setColor(Engine::Cursor::Color::BRIGHT_RED);
         Engine::Console::drawPoint(food.x + 2, food.y + 2, '*');
         
-        // Skor
+        // Score
         Engine::Cursor::setColor(Engine::Cursor::Color::BRIGHT_CYAN);
         Engine::Console::drawText(width / 2, height + 4, 
             "Score: " + std::to_string(score));
@@ -105,7 +105,7 @@ protected:
         Engine::Console::drawText(width - 10, height + 4, 
             "FPS: " + std::to_string(getCurrentFPS()));
         
-        // Game Over mesajı
+        // Game Over message
         if (gameOver) {
             Engine::Cursor::setColor(Engine::Cursor::Color::BRIGHT_RED);
             Engine::Console::drawText(width / 2 - 5, height / 2, "GAME OVER!");
@@ -133,19 +133,19 @@ private:
     float moveTimer = 0.0f;
     
     void moveSnake() {
-        // Yeni baş pozisyonu
+        // New head position
         Point newHead = snake.front();
         newHead.x += direction.x;
         newHead.y += direction.y;
         
-        // Duvar çarpma kontrolü
+        // Wall collision check
         if (newHead.x < 0 || newHead.x >= width || 
             newHead.y < 0 || newHead.y >= height) {
             gameOver = true;
             return;
         }
         
-        // Kendine çarpma kontrolü
+        // Self collision check
         for (const auto& segment : snake) {
             if (newHead == segment) {
                 gameOver = true;
@@ -153,15 +153,15 @@ private:
             }
         }
         
-        // Başı ekle
+        // Add head
         snake.push_front(newHead);
         
-        // Yiyecek yeme kontrolü
+        // Food eating check
         if (newHead == food) {
             score += 10;
             spawnFood();
         } else {
-            // Kuyruk kaldır (büyüme yok)
+            // Remove tail (no growth)
             snake.pop_back();
         }
     }
