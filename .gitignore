@@ -1,0 +1,46 @@
+# Build klasörleri
+build/
+cmake-build-*/
+out/
+
+# Derlenmiş dosyalar
+*.o
+*.obj
+*.exe
+*.out
+*.app
+
+# Kütüphane dosyaları
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+
+# IDE ve editor dosyaları
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# CMake cache
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+
+# Compiler çıktıları
+*.i
+*.ii
+*.s
+*.asm
+
+# Debug dosyaları
+*.dSYM/
+*.pdb
+
+# Test çıktıları
+Testing/
